@@ -7,11 +7,17 @@ def markov(files, num_words)
   files.each { |name|
     file = File.open name
     text = file.read
+    text.gsub! '################################', '\n'
     words = text.split(" ")
     names += text.scan /^[0-9A-ZĄŚŻŹĆŁÓŃ ]+$/
     
     prev = words[0]
     words[1..-1].each { |word|
+      if word == "\ufeffODCINEK"
+        prev = word
+        next
+      end
+
       punctuation = /^(.*?)([.?!,\n]*)$/.match word
       
       markov[prev] = Hash.new(0) if markov[prev].nil?
@@ -46,10 +52,7 @@ def markov(files, num_words)
 
   names.uniq!
   p names
-  names.each { |name|
-    output.gsub! name, "\n\n"+name+"\n\n"
-  }
-  output.gsub! /^ /, ''
+  output.gsub! /([.?!]) ([A-Z ĄŻĘŚĆŃÓŁ0-9]+) ([A-ZĄŻĘŚĆŃÓŁ][a-zążęśćńół ])/, "\\1\n\n\\2\n\n\\3"
 
   output
 end
