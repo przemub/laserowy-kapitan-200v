@@ -2,7 +2,9 @@ require 'sinatra'
 require_relative 'markov.rb'
 
 bases = {
-  "lgd" => ["10.txt"]
+  "kb" => ["bases/kb.txt"],
+  "lgd" => ["bases/lgd.txt"],
+  "k200v" => ["bases/k200v.txt"]
 }
 
 get '/:name/:words' do
