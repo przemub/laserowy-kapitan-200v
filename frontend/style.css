@@ -3,15 +3,76 @@ body {
 	background-position: center;
 	background-size: cover;
 	background-attachment: fixed;
+	
+	color: #FFCE0D;
+}
+h1, h2, label {
+	font-family: Korolev, sans-serif;
+	font-size: 2em;
+	margin: 0.25em 0;
+}
+label {
+	position: relative;
+	
+	font-size: 1.5em;
+}
+input[type=checkbox] {
+	opacity: 0;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+input[type=checkbox]:checked ~ div.checkbox {
+	background-color: #FFCE0D;
+}
+li:not(:last-of-type) {
+	margin-bottom: 3px;
 }
 
-.main {
-	max-width: 1000px;
+div.main {
+	max-width: 800px;
 	margin: 0 auto;
+	
+	background-color: rgba(0, 0, 0, 0.5);
+	padding: 1em;
 }
-.logo {
+img.logo {
 	display: block;
 	margin: 0 auto;
 	
-	max-width: 80%;
+	max-width: 100%;
+}
+textarea.output {
+	display: block;
+	width: 100%;
+	height: 200px;
+	box-sizing: border-box;
+	
+	border: 2px solid #FFCE0D;
+	background-color: #111;
+	
+	color: inherit;
+	font-family: monospace;
+	font-size: 12pt;
+	
+	resize: horizontal;
+}
+ul.sourcepicker {
+	list-style-type: none;
+}
+div.checkbox {
+	display: inline-block;
+	
+	width: 1.1em;
+	height: 1.1em;
+	
+	border: 2px solid #FFCE0D;
+	background-color: #111;
+	
+	vertical-align: sub;
+}
+
+@font-face {
+	font-family: Korolev;
+	src: url("korolev.otf");
 }
