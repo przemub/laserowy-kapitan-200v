@@ -16,7 +16,7 @@ function work(e) {
 	
 	http.onload = function() {
 		var output = document.getElementById("output");
-		output.innerText = http.responseText;
+		output.value = http.responseText;
 	}
 	
 	return false;
