@@ -7,15 +7,23 @@ bases = {
   "k200v" => ["bases/k200v.txt"]
 }
 
-get '/:name/:words' do
-  unless bases.has_key? params[:name]
-    return [400, "Names: " + bases.keys.join(" ")]
+before do
+  response.headers['Access-Control-Allow-Origin'] = '*'
+end
+
+get '/:name' do
+  base = []
+  params[:name].split(",").each do |name|
+    unless bases.has_key? name
+      return [400, "Names: " + bases.keys.join(" ")]
+    end
+    base += bases[name]
   end
 
-  markov(bases[params[:name]], params[:words].to_i)
+  markov(base, 200)
 end
 
 get '/' do
-  [400, "Usage: /name/words"]
+  [400, "Usage: /name,name2,..."]
 end
 
