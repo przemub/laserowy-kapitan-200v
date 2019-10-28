@@ -1,0 +1,17 @@
+body {
+	background-image: url("img/kurvix.jpg");
+	background-position: center;
+	background-size: cover;
+	background-attachment: fixed;
+}
+
+.main {
+	max-width: 1000px;
+	margin: 0 auto;
+}
+.logo {
+	display: block;
+	margin: 0 auto;
+	
+	max-width: 80%;
+}
