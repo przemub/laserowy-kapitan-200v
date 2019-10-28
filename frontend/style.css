@@ -12,9 +12,6 @@ h1, h2, label {
 	font-size: 2em;
 	margin: 0.25em 0;
 }
-ul {
-	list-style-type: none;
-}
 label {
 	position: relative;
 	
@@ -63,6 +60,9 @@ textarea.output {
 	
 	resize: vertical;
 }
+ul.sourcepicker {
+	list-style-type: none;
+}
 ul.sourcepicker input[type=checkbox]:checked ~ div.checkbox {
 	background-color: #FFCE0D;
 }
@@ -91,9 +91,16 @@ a.buttonlink {
 
 @font-face {
 	font-family: Roboto;
+	src: url("roboto.ttf");
 }
 @font-face {
 	font-family: Korolev;
 	font-weight: bold;
 	src: url("korolevbold.otf");
+}
+
+@media screen and (max-width: 800px) {
+	textarea.output {
+		font-size: 10pt;
+	}
 }
