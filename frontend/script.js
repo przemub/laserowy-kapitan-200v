@@ -17,6 +17,8 @@ function work(e) {
 	http.onload = function() {
 		var output = document.getElementById("output");
 		output.value = http.responseText;
+		output.scrollTop = 0;
+		output.scrollIntoView();
 	}
 	
 	return false;
