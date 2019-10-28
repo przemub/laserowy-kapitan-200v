@@ -11,7 +11,7 @@ function work(e) {
 		return false;
 	
 	var http = new XMLHttpRequest();
-	http.open("GET", "http://przemub.pl:4567/lgd/200", true);
+	http.open("GET", "http://przemub.pl:4567/" + chosenSources.join(), true);
 	http.send();
 	
 	http.onload = function() {
