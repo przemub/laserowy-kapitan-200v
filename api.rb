@@ -9,6 +9,7 @@ bases = {
 
 before do
   response.headers['Access-Control-Allow-Origin'] = '*'
+  content_type 'text/plain'
 end
 
 get '/:name' do
