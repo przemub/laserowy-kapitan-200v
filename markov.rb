@@ -2,23 +2,23 @@
 
 def markov(files, num_words, seed=Random.new_seed)
   markov = Hash.new
-  names = []
 
   files.each { |name|
     file = File.open name
     text = file.read
     text.gsub! '################################', '\n'
     words = text.split(" ")
-    names += text.scan /^[0-9A-ZĄŚŻŹĆŁÓŃ ]+$/
     
     prev = words[0]
     words[1..-1].each { |word|
       if word == "\ufeffODCINEK"
         prev = word
         next
+      elsif word == '\\n'
+        next
       end
 
-      punctuation = /^(.*?)([.?!,\n]*)$/.match word
+      punctuation = /^(.*?)([.?!,]*)$/.match word
       
       markov[prev] = Hash.new(0) if markov[prev].nil?
       markov[prev][punctuation[1]] += 1
@@ -51,11 +51,10 @@ def markov(files, num_words, seed=Random.new_seed)
     output += last_word
   end
 
-  names.uniq!
-  p names
-  output.gsub! /([.?!]) ([A-Z ĄŻĘŚĆŃÓŁ0-9]+) ([A-ZĄŻĘŚĆŃÓŁ][a-zążęśćńół ])/, "\\1\n\n\\2\n\n\\3"
+  output.gsub! /([.?!]) ([A-Z ĄŻĘŚĆŃÓŁ0-9']+) ([A-ZĄŻĘŚĆŃÓŁ][a-zążęśćńół ])/, "\\1\n\n\\2\n\n\\3"
 
   output
+  markov
 end
 
 if __FILE__ == $0
