@@ -1,6 +1,6 @@
 #!/usr/bin/ruby
 
-def markov(files, num_words)
+def markov(files, num_words, seed=Random.new_seed)
   markov = Hash.new
   names = []
 
@@ -36,7 +36,8 @@ def markov(files, num_words)
   last_word = "\ufeffODCINEK"
   output = last_word
 
-  wrs = -> (markov) { markov.max_by { |_, weight| rand ** (1.0 / weight) }.first }
+  rng = Random.new seed
+  wrs = -> (markov) { markov.max_by { |_, weight| rng.rand ** (1.0 / weight) }.first }
 
   num_words.times {
     last_word = wrs[markov[last_word]]
