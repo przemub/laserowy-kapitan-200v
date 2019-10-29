@@ -54,7 +54,6 @@ def markov(files, num_words, seed=Random.new_seed)
   output.gsub! /([.?!]) ([A-Z ĄŻĘŚĆŃÓŁ0-9']+) ([A-ZĄŻĘŚĆŃÓŁ][a-zążęśćńół ])/, "\\1\n\n\\2\n\n\\3"
 
   output
-  markov
 end
 
 if __FILE__ == $0
