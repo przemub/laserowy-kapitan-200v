@@ -7,6 +7,8 @@ bases = {
   "k200v" => ["bases/k200v.txt"]
 }
 
+markov = Markov.new
+
 before do
   # response.headers['Access-Control-Allow-Origin'] = '*'
   content_type 'text/plain'
@@ -24,9 +26,9 @@ get '/api/:name/?:seed?' do
   end
 
   if params[:seed].nil?
-    markov(base, 200)
+    markov.markov(base, 200)
   else
-    markov(base, 200, params[:seed].to_i)
+    markov.markov(base, 200, params[:seed].to_i)
   end
 end
 
