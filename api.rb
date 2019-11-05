@@ -8,11 +8,12 @@ bases = {
 }
 
 before do
-  response.headers['Access-Control-Allow-Origin'] = '*'
+  # response.headers['Access-Control-Allow-Origin'] = '*'
   content_type 'text/plain'
+  cache_control 'no-store'
 end
 
-get '/:name/?:seed?' do
+get '/api/:name/?:seed?' do
   base = []
   params[:name].split(",").each do |name|
     p name
@@ -29,7 +30,12 @@ get '/:name/?:seed?' do
   end
 end
 
-get '/' do
+get '/api' do
   [400, "Usage: /name,name2,...[/seed]"]
+end
+
+get "/" do
+  content_type 'text/html'
+  File.read('public/index.html')
 end
 
